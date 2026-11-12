@@ -1405,7 +1405,12 @@ constexpr BoardProfile LILYGO_T5S3 = {
     // the default 3px leaves the first and last characters of a line hard to
     // read. Measured by eye on hardware in two passes (3 -> 6 -> 8); top/bottom
     // are correct at the defaults. Compare the X4 Pro's 7px sides.
-    {9, 8, 3, 8}};
+    {9, 8, 3, 8},
+    false,              // batteryChargeStatusActiveHigh: unused (I2C gauge)
+    NO_I2C_FRONTLIGHT,  // PWM frontlight above
+    {},                 // haptic: none
+    // T5 S3 Pro stock shell: the top-right header battery sat under the bezel.
+    12};  // headerOffsetY
 
 // --- M5Paper v1.1 4.7" (ED047TC1 behind an IT8951E controller) — ESP32 --------
 // 540x960 16-gray panel driven through an IT8951E timing controller over SPI
