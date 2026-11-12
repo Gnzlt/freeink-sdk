@@ -1362,7 +1362,7 @@ constexpr BoardProfile SILKSCREEN = {Board::Silkscreen,
 // support doc). Geometry is the physical/native landscape scan size; app-level
 // orientation handles rotated reader layouts. Display + GT911 touch + PWM backlight + the I2C fuel gauge
 // (BQ27220/BQ25896) are wired here. The user button (behind the PCA9535 expander),
-// PCF85063 RTC, and LoRa/GPS remain board-support — see docs/lilygo-t5s3-support.md.
+// RTC interrupt, and LoRa/GPS remain board-support — see docs/lilygo-t5s3-support.md.
 constexpr BoardProfile LILYGO_T5S3 = {
     Board::LilyGoT5S3,
     "lilygo_t5s3",
@@ -1397,9 +1397,9 @@ constexpr BoardProfile LILYGO_T5S3 = {
     // it whenever power was actually cut rather than merely deep-slept.
     {39, 40, 400000, 0x51, 0, 0, 0, RtcType::Pcf8563, ImuType::None},
     1.2f,  // uiScale: 4.7" 960x540 touch (~234 PPI) — finger-sized chrome, like Sticky
-    // Power latch: main-power MOSFET on GPIO2, driven HIGH first thing in boot
-    // via holdPowerRails() or the board powers off when USB is unplugged.
-    {2},
+    // power: no latch. GPIO2 is the PCF8563's open-drain RTC_INT on this board
+    // (LilyGO pinmap), not a power MOSFET, so it must not be driven.
+    {},
     0,  // displayControllerVariant: not probed on this panel
     // Bezel: this case sits closer over the glass at the sides than the X4's, so
     // the default 3px leaves the first and last characters of a line hard to

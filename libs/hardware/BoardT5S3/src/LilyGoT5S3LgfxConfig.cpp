@@ -4,7 +4,8 @@
 
 namespace {
 
-constexpr int kDefaultVcomMv = -1600;
+// T5 S3 Pro (H752-01) factory VCOM, as stored in the stock firmware's NVS.
+constexpr int kDefaultVcomMv = -1560;
 constexpr uint8_t kTpsRegEnable = 0x01;
 constexpr uint8_t kTpsRegVcom = 0x03;
 constexpr uint8_t kTpsRegPowerGood = 0x0F;
